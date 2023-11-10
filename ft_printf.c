@@ -6,15 +6,16 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:33:37 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/10 11:26:56 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:56:02 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_printchar(char c)
+size_t	ft_printchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
 void	ft_printstr(char *s)
@@ -45,29 +46,27 @@ int		ft_printnbr(long nb, const char type)
 {
 	char	*base;
 	int		base_size;
+	size_t	size;
 	
-	base = ft_strlen(nb);
-	base_size = 0;
-	if (nb == -2147483648)
-	{
-		ft_printchar('-');
-		ft_printchar('2');
-		nb = 147483648;
-	}
+	
+	base = ft_setbase(type);
+	base_size = ft_strlen(base);
+	size = 0;
 	if (nb < 0)
 	{
 		ft_printchar('-');
 		nb *= -1;
 	}
-	if (nb >= x)
+	if (nb >= base_size)
 	{
-		ft_printnbr(nb / x);
-		ft_printnbr(nb % x);
+		size += ft_printnbr(nb / base_size, type);
+		size += ft_printnbr(nb % base_size, type);
 	}
 	else
 	{
-		ft_printchar(nb + 48);
+		size += ft_printchar(base[nb]);
 	}
+	return (size);
 }
 
 int		ft_printf(const char *str, ...)
