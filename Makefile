@@ -6,11 +6,11 @@
 #    By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 12:33:23 by lsaumon           #+#    #+#              #
-#    Updated: 2023/11/09 12:41:22 by lsaumon          ###   ########.fr        #
+#    Updated: 2023/11/13 07:53:48 by lsaumon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	printf.c \
+SRCS =	ft_printf.c \
 
 OBJS = ${SRCS:.c=.o}
 
