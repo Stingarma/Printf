@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:33:37 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/15 07:42:38 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/15 08:39:49 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,52 @@ int		ft_printf(const char *str, ...)
 	if (!str[index])
 		return (0);
 	return (1);
+}
+
+void	ft_printparam(const char *str, ...)
+{
+	va_list	args;
+	size_t	i;
+	char	c;
+	char	*s;
+
+	va_start(args, str);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '%')
+		{
+			i++;
+			if (str[i] == 'c')
+			{
+				c = va_arg(args, int);
+				ft_printchar(c);
+			}
+			if (str[i] == 's')
+			{
+				s = va_arg(args, char *);
+				ft_printstr(s);
+			}
+		}
+	}
+	va_end(args);
+}
+
+int		ft_printf(const char *str, ...)
+{
+	va_list	args;
+	size_t	i;
+	
+	va_start(args, str);
+	i = 0;
+	if (!str)
+		return (-1);
+	while (str[i] !='\0')
+	{
+		if (str[i] == '%')
+		{
+			if (str[i + 1] == 'c' || str[i + 1] == 's')
+				ft_printparam(va_arg(args, str));
+		}
+	}
 }
