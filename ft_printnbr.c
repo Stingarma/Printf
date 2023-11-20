@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:25:21 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 11:39:42 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 12:16:58 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static size_t	ft_printnbr_base(unsigned long nb, const char *base)
 	size_t	i;
 	size_t	size;
 
+	size = 0;
 	i = ft_strlen(base);
 	if (nb >= i)
 	{
@@ -58,7 +59,7 @@ size_t	ft_printnbr(long nb, char type)
 	{
 		ft_printchar('0');
 		ft_printchar('x');
-		if (type == NULL)
+		if (type >= 0)
 			ft_printchar('0');
 		ft_printnbr_base((unsigned long)nb, base);
 	}
@@ -66,5 +67,5 @@ size_t	ft_printnbr(long nb, char type)
 	{
 		ft_printnbr_base((unsigned long)nb, base);
 	}
-	return (ft_printnbr_base);
+	return (1);
 }

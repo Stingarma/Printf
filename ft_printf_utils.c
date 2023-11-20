@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:08:57 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 11:43:16 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 12:05:27 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_printchar(char c)
 	return (write(1, &c, 1));
 }
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -31,11 +31,11 @@ static size_t	ft_strlen(const char *s)
 
 size_t	ft_printstr(char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!s)
-		return (1, "(null)", 6);
+		return (write(1, "(null)", 6));
 	while (s[i])
 	{
 		write (1, &s[i], 1);
