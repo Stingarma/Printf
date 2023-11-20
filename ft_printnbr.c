@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:25:21 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 12:16:58 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 15:02:44 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,34 @@ static size_t	ft_printnbr_base(unsigned long nb, const char *base)
 	i = ft_strlen(base);
 	if (nb >= i)
 	{
-		ft_printnbr_base(nb / i, base);
-		size++;
+		size += ft_printnbr_base(nb / i, base);
 	}
-	ft_printchar(base[nb % i]);
+	size += ft_printchar(base[nb % i]);
 	return (size);
+}
+
+size_t	ft_printptr(unsigned long ptr, char type)
+{
+	const char	*base;
+
+	base = ft_setbase(type);
+	if (type == 'p')
+	{
+		ft_printchar('0');
+		ft_printchar('x');
+		if (type >= 0)
+			ft_printchar('0');
+		ft_printnbr_base((unsigned long)ptr, base);
+	}
+	return (ptr);
 }
 
 size_t	ft_printnbr(long nb, char type)
 {
 	const char	*base;
+	size_t		size;
 
+	size = 0;
 	base = ft_setbase(type);
 	if (type == 'd' || type == 'i')
 	{
@@ -52,20 +69,13 @@ size_t	ft_printnbr(long nb, char type)
 		{
 			ft_printchar('-');
 			nb = -nb;
+			size++;
 		}
-		ft_printnbr_base(nb, base);
-	}
-	if (type == 'p')
-	{
-		ft_printchar('0');
-		ft_printchar('x');
-		if (type >= 0)
-			ft_printchar('0');
-		ft_printnbr_base((unsigned long)nb, base);
+		size += ft_printnbr_base(nb, base);
 	}
 	if (type == 'u' || type == 'x' || type == 'X')
 	{
-		ft_printnbr_base((unsigned long)nb, base);
+		size += ft_printnbr_base((unsigned long)nb, base);
 	}
-	return (1);
+	return (size);
 }
