@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:34:03 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 10:59:45 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 11:41:55 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-int ft_printf(const char *str, ...);
-void	ft_printdec(int nb);
-void	ft_printhexcap(int nb);
-size_t	ft_printnbr(long nb, char type);
-void	ft_printnbr_base(unsigned long nb, const char *base);
-size_t	ft_printpercent();
+int		ft_printf(const char *str, ...);
+int		ft_printf_formats(va_list args, const char formats);
+
 size_t	ft_printchar(char c);
-size_t	ft_strlen(const char *s);
 size_t	ft_printstr(char *s);
+size_t	ft_printpercent(void);
+size_t	ft_printnbr(long nb, char type);
 
 #endif

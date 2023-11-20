@@ -6,13 +6,13 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:25:21 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 11:03:41 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 11:39:42 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_setbase(char type)
+static char	*ft_setbase(char type)
 {
 	char	*base;
 
@@ -25,19 +25,22 @@ char	*ft_setbase(char type)
 	return (base);
 }
 
-void	ft_printnbr_base(unsigned long nb, const char *base)
+static size_t	ft_printnbr_base(unsigned long nb, const char *base)
 {
 	size_t	i;
+	size_t	size;
 
 	i = ft_strlen(base);
 	if (nb >= i)
 	{
 		ft_printnbr_base(nb / i, base);
+		size++;
 	}
 	ft_printchar(base[nb % i]);
+	return (size);
 }
 
-void	ft_printnumber(long nb, char type)
+size_t	ft_printnbr(long nb, char type)
 {
 	const char	*base;
 
@@ -63,8 +66,5 @@ void	ft_printnumber(long nb, char type)
 	{
 		ft_printnbr_base((unsigned long)nb, base);
 	}
-}
-size_t	ft_printnbr(long nb, char type)
-{
-	
+	return (ft_printnbr_base);
 }

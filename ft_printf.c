@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:33:37 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 11:05:15 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 11:42:41 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	ft_printf_formats(va_list args, const char formats)
 		return (printlen += ft_printpercent());
 }
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	size_t	i;
 	size_t	l;
-	
+
 	va_start(args, str);
 	i = 0;
 	l = 0;
