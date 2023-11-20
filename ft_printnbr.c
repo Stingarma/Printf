@@ -6,7 +6,7 @@
 /*   By: lsaumon <lsaumon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:25:21 by lsaumon           #+#    #+#             */
-/*   Updated: 2023/11/20 15:02:44 by lsaumon          ###   ########.fr       */
+/*   Updated: 2023/11/20 16:35:09 by lsaumon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static size_t	ft_printnbr_base(unsigned long nb, const char *base)
 size_t	ft_printptr(unsigned long ptr, char type)
 {
 	const char	*base;
+	size_t		size;
 
-	base = ft_setbase(type);
+	size = 0;
+	base = "0123456789abcdef";
 	if (type == 'p')
 	{
-		ft_printchar('0');
-		ft_printchar('x');
-		if (type >= 0)
-			ft_printchar('0');
-		ft_printnbr_base((unsigned long)ptr, base);
+		size += ft_printchar('0');
+		size += ft_printchar('x');
+		size += ft_printnbr_base((unsigned long)ptr, base);
 	}
-	return (ptr);
+	return (size);
 }
 
 size_t	ft_printnbr(long nb, char type)
